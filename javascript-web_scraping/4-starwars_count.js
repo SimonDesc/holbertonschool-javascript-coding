@@ -7,7 +7,7 @@ Wedge Antilles is character ID 18 - your script must use this ID for filtering t
 You must use the module request
 */
 
-const request = require("request");
+const request = require('request');
 const URL = process.argv[2];
 
 let count = 0;
@@ -20,11 +20,11 @@ request(URL, function (error, response, body) {
   const obj = JSON.parse(body);
 
   for (let i = 0; i < obj.results.length; i++) {
-    for (let key in obj.results[i]) {
-      if (key == "characters") {
-        let listChar = obj.results[i][key];
+    for (const key in obj.results[i]) {
+      if (key === 'characters') {
+        const listChar = obj.results[i][key];
         for (let i = 0; i < listChar.length; i++) {
-          if (listChar[i].slice(-3).includes("18")) {
+          if (listChar[i].slice(-3).includes('18')) {
             count += 1;
           }
         }
