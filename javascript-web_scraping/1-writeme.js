@@ -9,12 +9,10 @@ Write a script that writes a string to a file.
     If an error occurred during while writing, print the error object
 */
 
-const fs = require("fs");
+const fs = require('fs');
 
-fs.writeFile(process.argv[2], process.argv[3], "utf8", (erreur) => {
+fs.writeFile(process.argv[2], process.argv[3], 'utf8', (erreur) => {
   if (erreur) {
     console.error(erreur);
-    return;
   }
-
 });
