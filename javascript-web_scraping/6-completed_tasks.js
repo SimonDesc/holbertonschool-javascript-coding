@@ -9,29 +9,30 @@ Write a script that computes the number of tasks completed by user id.
 
 const URL = process.argv[2];
 const request = require('request');
-let count = 0;
-const dict = {};
-let oldID = 0;
 
 request(URL, function (error, response, body) {
   if (error) {
     console.error(error);
-  }
-  const obj = JSON.parse(body);
-
-  for (const item of obj) {
-    const id = item.userId;
-    if (oldID !== id) {
-      count = 0;
-    }
-
-    if (item.completed === true) {
-      count += 1;
-      dict[id] = count;
-    }
-
-    oldID = id;
+    return;
   }
 
-  console.log(dict);
+  const todos = JSON.parse(body);
+  const taskCounts = {};
+
+  for (const todo of todos) {
+    if (todo.completed) {
+      if (!taskCounts[todo.userId]) {
+        taskCounts[todo.userId] = 0;
+      }
+      taskCounts[todo.userId]++;
+    }
+  }
+
+  for (const userId in taskCounts) {
+    if (taskCounts[userId] === 0) {
+      delete taskCounts[userId];
+    }
+  }
+
+  console.log(taskCounts);
 });
