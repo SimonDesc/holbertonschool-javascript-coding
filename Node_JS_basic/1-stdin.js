@@ -8,7 +8,7 @@ process.stdin.on('data', (chunk) => {
   // Si une nouvelle ligne est détectée, affiche le nom
   if (inputData.includes('\n')) {
     process.stdout.write(`Your name is: ${inputData.trim()}\n`);
-    process.stdin.end();
+    process.stdin.pause(); // Ferme stdin
   }
 });
 
