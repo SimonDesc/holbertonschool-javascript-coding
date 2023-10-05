@@ -14,7 +14,7 @@ function countStudents(path) {
   let tableauPropre = tableau.filter((element) => element !== '' && element !== null && element !== undefined); // on récupère que les lignes non vides
   tableauPropre = tableauPropre.slice(1); // on cut l'entête des colonnes
 
-  console.log(`Number of students: ${tableauPropre.length} `);
+  console.log(`Number of students: ${tableauPropre.length}`);
 
   const tableauDetail = tableauPropre.map((element) => element.split(',')); // on sous decoupe chaque string en tableau
 
